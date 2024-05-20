@@ -1,44 +1,59 @@
 import React, { useState } from "react";
 import Layout from "@layout";
-import { Input } from "@form";
+import { Input, Select } from "@form";
 import { FaUser } from "react-icons/fa6";
 
 interface CargarTrabajoProps {}
 
 const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
-  const [formState, setFormState] = useState({
-    categoria: "",
+  const [formData, setFormData] = useState({
     nombreAutor: "",
     apellidoAutor: "",
     cedulaAutor: "",
+    categoria: "",
     titulo: "",
     descripcion: "",
     archivo: null,
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const categoriaData: (string | number)[] = [];
 
   return (
     <Layout>
-      <div className="containerForm">
+      <div className="container-form">
         <form>
           <Input
             icono={<FaUser />}
             type="text"
             name="nombre"
             placeholder="Nombre"
-            value={formState.nombreAutor}
-            valueChange={handleChange}
+            value={formData.nombreAutor}
+            valueChange={(e) =>
+              setFormData({ ...formData, nombreAutor: e.target.value })
+            }
           />
+          <Input
+            icono={<FaUser />}
+            type="text"
+            name="apellido"
+            placeholder="Apellido"
+            value={formData.apellidoAutor}
+            valueChange={(e) =>
+              setFormData({ ...formData, apellidoAutor: e.target.value })
+            }
+          />
+          <Input
+            icono={<FaUser />}
+            type="number"
+            name="cedula"
+            placeholder="Cedula"
+            value={formData.cedulaAutor}
+            valueChange={(e) =>
+              setFormData({ ...formData, cedulaAutor: e.target.value })
+            }
+          />
+
+          <Select data={categoriaData} />
         </form>
       </div>
     </Layout>

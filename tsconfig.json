@@ -16,7 +16,8 @@
       "@/*": ["./src/*"],
       "@nano": ["./src/components/nano/Nano.tsx"],
       "@view/*": ["./src/components/views/*"],
-      "@layout": ["./src/components/layout/Layout.tsx"]
+      "@layout": ["./src/components/layout/Layout.tsx"],
+      "@form": ["./src/components/form/index.tsx"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -1,0 +1,50 @@
+.footer-container {
+  .desktop-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: inherit;
+
+    button {
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $azul;
+    }
+
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      li {
+        list-style: none;
+        margin: 0 10px;
+
+        a {
+          color: $azul;
+          font-size: 14px;
+          font-weight: 600;
+          text-decoration: none;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .footer-container {
+    .desktop-footer {
+      display: grid;
+      place-content: center;
+      padding: 25px 0px;
+
+      ul li {
+        margin: 0 20px;
+      }
+    }
+  }
+}

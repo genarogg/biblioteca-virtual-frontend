@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import { ToastContainer } from "react-toastify";
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   header?: JSX.Element;
   footer?: JSX.Element;
   where?: string;

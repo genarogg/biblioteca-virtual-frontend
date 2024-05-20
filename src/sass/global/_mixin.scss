@@ -1,0 +1,64 @@
+// centrar elementos
+@mixin center {
+  display: grid;
+  place-content: center;
+}
+
+@mixin center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin center-x {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin center-y {
+  display: flex;
+  align-items: center;
+}
+
+// width absoluto
+@mixin width($size) {
+  width: $size;
+  min-width: $size;
+  max-width: $size;
+}
+
+// height absoluto
+@mixin height($size) {
+  height: $size;
+  min-height: $size;
+  max-height: $size;
+}
+
+@mixin cuadrado($sizew, $sizeh: $sizew) {
+  height: $sizeh;
+  width: $sizew;
+}
+
+@mixin distribucion-responsiva($size: 360px, $cantidad-de-elementos: 1fr) {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax($size, $cantidad-de-elementos)
+  );
+
+  @media screen and (max-width: 360px) {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(95vw, $cantidad-de-elementos)
+    );
+  }
+}
+
+
+@mixin between($min-width, $max-width) {
+  @media (min-width: $min-width) and (max-width: $max-width) {
+    @content;
+  }
+}
+
+

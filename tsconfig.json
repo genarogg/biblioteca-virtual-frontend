@@ -13,7 +13,10 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@nano": ["./src/components/nano/Nano.tsx"],
+      "@view/*": ["./src/components/views/*"],
+      "@layout": ["./src/components/layout/Layout.tsx"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

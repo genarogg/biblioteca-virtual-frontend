@@ -1,0 +1,69 @@
+.container-input {
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 7fr;
+  height: 46px;
+  position: relative;
+  width: 100%;
+
+  &,
+  * {
+    transition: 500ms ease all;
+  }
+
+  &:hover {
+    border: 1px solid $azul;
+  }
+
+  &.focus {
+    border: 1px solid $azul;
+
+    span.holder {
+      font-size: 14px;
+      font-weight: 600;
+      top: 0;
+    }
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    height: 100%;
+    outline: none;
+    padding: 0 10px;
+    position: relative;
+    width: 90%;
+    color: #fff;
+  }
+
+  label {
+    @include center;
+
+    .icono {
+      @include center;
+      color: #fff;
+    }
+  }
+
+  span.holder {
+    background-color: $gris;
+    color: #fff;
+    font-size: 18px;
+    left: 40px;
+    padding: 0 10px;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.3s;
+
+    &.has-content {
+      font-size: 14px;
+      font-weight: 600;
+      top: 0 !important;
+    }
+  }
+}

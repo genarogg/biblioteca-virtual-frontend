@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import { Icono } from "@nano";
-interface InputProps {
-  type: string;
+interface InputFileProps {
+  
   name: string;
   id?: string;
   placeholder: string;
@@ -13,8 +13,8 @@ interface InputProps {
   content?: boolean;
 }
 
-const Input: React.FC<InputProps> = ({
-  type,
+const InputFile: React.FC<InputFileProps> = ({
+  
   name,
   id = name,
   placeholder,
@@ -39,7 +39,7 @@ const Input: React.FC<InputProps> = ({
       </label>
 
       <input
-        type={type}
+        type="file"
         name={name}
         required={required}
         id={id}
@@ -55,4 +55,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input;
+export default InputFile;

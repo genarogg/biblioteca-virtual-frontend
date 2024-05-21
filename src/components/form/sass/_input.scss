@@ -39,6 +39,19 @@
     color: $azul;
   }
 
+  select {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    height: 100%;
+    outline: none;
+    padding: 0 10px;
+    position: relative;
+    width: 90%;
+    color: $azul;
+  }
+
   label {
     @include center;
 

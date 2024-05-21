@@ -3,28 +3,60 @@ import { useState } from "react";
 import { Icono } from "@nano";
 
 interface SelectProps {
-  data: (string | number)[];
+  data: any[];
   name: string;
-  icono?: React.ReactNode;
   id?: string;
+  placeholder: string;
+  required?: boolean;
+  icono?: React.ReactNode;
+  value: string | number | boolean;
+  valueChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  content?: boolean;
 }
 
-const Select: React.FC<SelectProps> = ({ data, name, id, icono }) => {
+const Select: React.FC<SelectProps> = ({
+  data,
+  name,
+  id,
+  placeholder,
+  required = true,
+  icono,
+  value,
+  valueChange,
+  content = false,
+}) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [hasContent, setHasContent] = useState(false);
+  const [hasContent, setHasContent] = useState(content);
+
+  const handleInputChange = (event: any) => {
+    setHasContent(event.target.value !== "");
+    valueChange(event);
+  };
 
   return (
     <div className={`container-input ${isFocused ? "focus" : ""}`}>
       <label htmlFor={`#${id}`}>
         <Icono icono={icono} />
       </label>
-      <select name={name} id={id}>
+      <select
+        name={name}
+        required={required}
+        id={id}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        onChange={handleInputChange}
+        value={value as string | number | readonly string[] | undefined}
+      >
+        <option value="" id=""></option>
         {data.map((item, index) => (
-          <option key={index} value={item}>
-            {item}
+          <option key={index} value={item.value}>
+            {item.text}
           </option>
         ))}
       </select>
+      <span className={`holder ${hasContent ? "has-content" : ""}`}>
+        {placeholder}
+      </span>
     </div>
   );
 };

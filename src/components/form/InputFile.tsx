@@ -2,34 +2,37 @@ import React, { useState } from "react";
 
 import { Icono } from "@nano";
 interface InputFileProps {
-  
   name: string;
   id?: string;
   placeholder: string;
   required?: boolean;
   icono?: React.ReactNode;
-  value: string | number | boolean;
-  valueChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  valueChange: (file: File) => void;
   content?: boolean;
 }
 
 const InputFile: React.FC<InputFileProps> = ({
-  
   name,
   id = name,
   placeholder,
   required = true,
   icono,
-  value,
+
   valueChange,
-  content = false
+  content = false,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [hasContent, setHasContent] = useState(content);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setHasContent(event.target.value !== "");
-    valueChange(event);
+    const file = event.target;
+
+    if (file.files) {
+      console.log(file.files[0]);
+      /* setHasContent(event.target.value !== ""); */
+  
+      valueChange(file.files[0]);
+    }
   };
 
   return (
@@ -37,7 +40,10 @@ const InputFile: React.FC<InputFileProps> = ({
       <label htmlFor={`#${id}`}>
         <Icono icono={icono} />
       </label>
-
+      {/* <label htmlFor="file-upload" className="file-label">
+        Subir archivo PDF
+      </label> */}
+      {/* <input id="file-upload" type="file" accept="application/pdf" /> */}
       <input
         type="file"
         name={name}
@@ -46,7 +52,6 @@ const InputFile: React.FC<InputFileProps> = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onChange={handleInputChange}
-        value={value as string | number | readonly string[] | undefined}
       />
       <span className={`holder ${hasContent ? "has-content" : ""}`}>
         {placeholder}

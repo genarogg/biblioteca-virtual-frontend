@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "@layout";
-import { Input, Select } from "@form";
+import { Input, InputFile, Select } from "@form";
 import { FaUser } from "react-icons/fa6";
 
 import categoriaData from "./categoria";
@@ -15,14 +15,42 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
     titulo: "",
     categoria: "",
     descripcion: "",
-    archivo: null,
+    archivo: new File([], ""),
   });
+
+  const fileInput = React.useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = new FormData();
+    if (fileInput.current.files.length > 0) {
+      data.append("archivo", fileInput.current.files[0]);
+    }
+
+    // Agregar los otros campos al objeto FormData
+/*     data.append("nombreAutor", formData.nombreAutor);
+    data.append("apellidoAutor", formData.apellidoAutor);
+    data.append("cedulaAutor", formData.cedulaAutor);
+    data.append("titulo", formData.titulo);
+    data.append("categoria", formData.categoria);
+    data.append("descripcion", formData.descripcion);
+ */
+    console.log(data);
+    fetch("http://localhost:8000/cargar-trabajo", {
+      method: "POST",
+      body: data,
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+  };
 
   return (
     <Layout>
       <div className="container-form">
-        <form>
-          <Input
+        <form onSubmit={handleSubmit}>
+          {/* <Input
             icono={<FaUser />}
             type="text"
             name="nombre"
@@ -74,19 +102,26 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
             valueChange={(e) =>
               setFormData({ ...formData, categoria: e.target.value })
             }
-            
-          />
-
-          <Input
+          /> */}
+          <input type="file" name="file" ref={fileInput} />
+          {/* <InputFile
             icono={<FaUser />}
-            type="file"
-            name="titulo"
-            placeholder="titulo"
-            value={formData.titulo}
-            valueChange={(e) =>
-              setFormData({ ...formData, titulo: e.target.value })
-            }
-          />
+            name="file"
+            placeholder="Cargar archivo PDF"
+  
+            valueChange={(e) => {
+              setFormData({ ...formData, file: e });
+            }}
+          /> */}
+
+          {/* <textarea
+            onChange={(e) => {
+              setFormData({ ...formData, descripcion: e.target.value });
+            }}
+            name="descripcion"
+            id="descripcion"
+          ></textarea> */}
+          <button type="submit">Enviar</button>
         </form>
       </div>
     </Layout>

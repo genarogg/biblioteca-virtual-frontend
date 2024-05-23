@@ -40,6 +40,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         onBlur={() => setIsFocused(false)}
         onChange={handleInputChange}
         value={value as string | number | readonly string[] | undefined}
+        style={{ resize: 'none' }}
       ></textarea>
       <span className={`holder ${hasContent ? "has-content" : ""}`}>
         {placeholder}

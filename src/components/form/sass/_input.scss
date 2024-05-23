@@ -96,16 +96,17 @@
     display: block;
     width: 100%;
     cursor: pointer;
+    color: $azul;
+    font-size: 18px;
+    font-weight: 600;
   }
-
-
 
   textarea {
     background-color: transparent;
     border: none;
     font-size: 18px;
     font-weight: 600;
-    height: 100%;
+
     outline: none;
     padding: 10px 30px;
     position: relative;

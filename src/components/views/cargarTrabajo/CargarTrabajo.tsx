@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import Layout from "@layout";
 import { Input, InputFile, Select, TextArea } from "@form";
-import { FaUser } from "react-icons/fa6";
+
+import {
+  FaEnvelope,
+  FaRegFaceGrin,
+  FaRegFaceGrinBeam,
+  FaIdCard,
+  FaT,
+  FaTableList,
+  FaFilePdf,
+} from "react-icons/fa6";
 
 import categoriaData from "./categoria";
 import { Bounce, toast } from "react-toastify";
@@ -74,7 +83,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
         <form onSubmit={handleSubmit}>
           <div className="container-info-user">
             <Input
-              icono={<FaUser />}
+              icono={<FaRegFaceGrin />}
               type="text"
               name="nombre"
               placeholder="Nombre"
@@ -84,7 +93,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
               }
             />
             <Input
-              icono={<FaUser />}
+              icono={<FaRegFaceGrinBeam />}
               type="text"
               name="apellido"
               placeholder="Apellido"
@@ -94,7 +103,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
               }
             />
             <Input
-              icono={<FaUser />}
+              icono={<FaIdCard />}
               type="number"
               name="cedula"
               placeholder="Cedula"
@@ -104,7 +113,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
               }
             />
             <Input
-              icono={<FaUser />}
+              icono={<FaEnvelope />}
               type="email"
               name="email"
               placeholder="email"
@@ -116,7 +125,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
           </div>
           <div className="container-info-trabajo">
             <Input
-              icono={<FaUser />}
+              icono={<FaT />}
               type="text"
               name="titulo"
               placeholder="titulo"
@@ -128,7 +137,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
 
             <Select
               data={categoriaData}
-              icono={<FaUser />}
+              icono={<FaTableList />}
               name="categoria"
               placeholder="categoria"
               value={formData.categoria}
@@ -137,7 +146,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
               }
             />
             <InputFile
-              icono={<FaUser />}
+              icono={<FaFilePdf />}
               id="file"
               name="file"
               placeholder="Cargar archivo PDF"

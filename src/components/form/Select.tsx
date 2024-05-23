@@ -36,7 +36,7 @@ const Select: React.FC<SelectProps> = ({
 
   return (
     <div className={`container-input ${isFocused ? "focus" : ""}`} {...props}>
-      <label htmlFor={`#${id}`}>
+      <label htmlFor={id}>
         <Icono icono={icono} />
       </label>
       <select

@@ -10,8 +10,9 @@
 
   display: flex; //nueva linea
 
-  &.textarea {
+  cursor: pointer;
 
+  &.textarea {
     height: 100%;
     display: flex;
   }
@@ -48,11 +49,11 @@
     color: $azul;
   }
 
-  /*  input[type="file"] {
+  input[type="file"] {
     display: none;
-  } */
+  }
 
-  .file-label {
+  /*  .file-label {
     border: none;
     color: #ccc;
     padding: 15px 32px;
@@ -62,7 +63,7 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-  }
+  } */
 
   select {
     background-color: transparent;
@@ -86,6 +87,18 @@
       color: #fff;
     }
   }
+
+  label.file,
+  label.custom-file-upload {
+    max-width: initial;
+    min-width: initial;
+    z-index: 10000;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+  }
+
+
 
   textarea {
     background-color: transparent;

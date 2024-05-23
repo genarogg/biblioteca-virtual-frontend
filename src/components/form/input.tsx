@@ -34,7 +34,7 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <div className={`container-input ${isFocused ? "focus" : ""}`}>
-      <label htmlFor={`#${id}`}>
+      <label htmlFor={id}>
         <Icono icono={icono} />
       </label>
 
@@ -48,7 +48,7 @@ const Input: React.FC<InputProps> = ({
         onChange={handleInputChange}
         value={value as string | number | readonly string[] | undefined}
       />
-      <span className={`holder ${hasContent ? "has-content" : ""}`}>
+      <span className={`holder ${hasContent ? "has-content" : ""}`} >
         {placeholder}
       </span>
     </div>

@@ -138,6 +138,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
             />
             <InputFile
               icono={<FaUser />}
+              id="file"
               name="file"
               placeholder="Cargar archivo PDF"
               valueChange={(e: any) => {

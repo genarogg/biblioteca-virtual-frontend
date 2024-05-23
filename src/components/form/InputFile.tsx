@@ -22,6 +22,7 @@ const Input: React.FC<InputFileProps> = ({
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [hasContent, setHasContent] = useState(content);
+  const [fileName, setFileName] = useState<String>(""); // [1
   const fileInput = useRef<HTMLInputElement>(null);
 
   const normalizeFilename = (filename: string) => {
@@ -43,10 +44,15 @@ const Input: React.FC<InputFileProps> = ({
       const formattedFile = new File([file], normalizeFilename(file.name), {
         type: file.type,
       });
-      valueChange(formattedFile);
+      valueChange(formattedFile); // Si file.name existe, cambia el estado setHasContent a true
+      if (file.name) {
+        setHasContent(true);
+        setFileName(file.name);
+      }
     } else {
-      /* setHasContent(event.target.value !== ""); */
-      
+      // Si no hay archivo seleccionado, cambia el estado setHasContent a false
+      setHasContent(false);
+      setFileName("");
       //@ts-ignore
       valueChange(event.target.value);
     }
@@ -67,9 +73,16 @@ const Input: React.FC<InputFileProps> = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onChange={handleInputChange}
+        style={{ display: "none" }}
       />
+      <label htmlFor={id} className="custom-file-upload">
+        {fileName}
+      </label>
+
       <span className={`holder ${hasContent ? "has-content" : ""}`}>
-        {placeholder}
+        <label htmlFor={id} className="file">
+          {placeholder}
+        </label>
       </span>
     </div>
   );

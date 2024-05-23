@@ -1,54 +1,69 @@
-import React, { useState } from "react";
-
+import React, { useState, useRef } from "react";
 import { Icono } from "@nano";
+
 interface InputFileProps {
   name: string;
   id?: string;
   placeholder: string;
   required?: boolean;
-  icono?: React.ReactNode;
+  icono: any;
   valueChange: (file: File) => void;
   content?: boolean;
 }
 
-const InputFile: React.FC<InputFileProps> = ({
+const Input: React.FC<InputFileProps> = ({
   name,
   id = name,
   placeholder,
   required = true,
   icono,
-
   valueChange,
   content = false,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [hasContent, setHasContent] = useState(content);
+  const fileInput = useRef<HTMLInputElement>(null);
+
+  const normalizeFilename = (filename: string) => {
+    const ext = filename.slice(filename.lastIndexOf("."));
+    const name = filename.slice(0, filename.lastIndexOf("."));
+    return (
+      name
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/gi, "") + ext
+    );
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target;
-
-    if (file.files) {
-      console.log(file.files[0]);
+    if (event.target.files?.length) {
+      const file = event.target.files[0];
+      const formattedFile = new File([file], normalizeFilename(file.name), {
+        type: file.type,
+      });
+      valueChange(formattedFile);
+    } else {
       /* setHasContent(event.target.value !== ""); */
-  
-      valueChange(file.files[0]);
+      
+      //@ts-ignore
+      valueChange(event.target.value);
     }
   };
 
   return (
     <div className={`container-input ${isFocused ? "focus" : ""}`}>
-      <label htmlFor={`#${id}`}>
+      <label htmlFor={id}>
         <Icono icono={icono} />
       </label>
-      {/* <label htmlFor="file-upload" className="file-label">
-        Subir archivo PDF
-      </label> */}
-      {/* <input id="file-upload" type="file" accept="application/pdf" /> */}
+
       <input
         type="file"
         name={name}
         required={required}
         id={id}
+        ref={fileInput}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onChange={handleInputChange}
@@ -60,4 +75,4 @@ const InputFile: React.FC<InputFileProps> = ({
   );
 };
 
-export default InputFile;
+export default Input;

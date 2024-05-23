@@ -1,26 +1,22 @@
 import { useState } from "react";
 
-import { Icono } from "@nano";
-
-interface SelectProps {
-  data: any[];
+interface TextAreaProps {
   name: string;
   id?: string;
   placeholder: string;
   required?: boolean;
-  icono?: React.ReactNode;
+ 
   value: string | number | boolean;
   valueChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   content?: boolean;
 }
 
-const Select: React.FC<SelectProps> = ({
-  data,
+const TextArea: React.FC<TextAreaProps> = ({
   name,
   id,
   placeholder,
   required = true,
-  icono,
+
   value,
   valueChange,
   content = false,
@@ -35,11 +31,8 @@ const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <div className={`container-input ${isFocused ? "focus" : ""}`} {...props}>
-      <label htmlFor={`#${id}`}>
-        <Icono icono={icono} />
-      </label>
-      <select
+    <div className={`container-input textarea ${isFocused ? "focus" : ""}`} {...props}>
+      <textarea
         name={name}
         required={required}
         id={id}
@@ -47,14 +40,7 @@ const Select: React.FC<SelectProps> = ({
         onBlur={() => setIsFocused(false)}
         onChange={handleInputChange}
         value={value as string | number | readonly string[] | undefined}
-      >
-        <option value="" id=""></option>
-        {data.map((item, index) => (
-          <option key={index} value={item.value}>
-            {item.text}
-          </option>
-        ))}
-      </select>
+      ></textarea>
       <span className={`holder ${hasContent ? "has-content" : ""}`}>
         {placeholder}
       </span>
@@ -62,4 +48,4 @@ const Select: React.FC<SelectProps> = ({
   );
 };
 
-export default Select;
+export default TextArea;

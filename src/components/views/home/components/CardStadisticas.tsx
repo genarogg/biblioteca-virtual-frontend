@@ -8,6 +8,7 @@ interface CardStadisticaProps {
   text: string;
   color: string;
   url: string;
+  cantidad: number;
 }
 
 const CardStadistica: React.FC<CardStadisticaProps> = ({
@@ -16,17 +17,19 @@ const CardStadistica: React.FC<CardStadisticaProps> = ({
   text,
   color,
   url,
+  cantidad,
 }) => {
   return (
-    <A css="card" to={url}>
-      {/*  <div className="container-icono">
-        <Icono icono={icono} />
-      </div> */}
-      <h2 style={{ color: color }}>{text}</h2>
-      <div className="estadistica">
-        <Circle percentage={estadistica} color={color} />
+    <div className="card">
+      <div className="header">
+        <h2 style={{ color: color }}>{text}</h2>
+        <div className="estadistica">
+          <Circle percentage={estadistica} color={color} cantidad={cantidad} />
+        </div>
       </div>
-    </A>
+
+      <A to={url}>consultar recursos</A>
+    </div>
   );
 };
 

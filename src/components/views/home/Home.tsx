@@ -22,31 +22,6 @@ const Home: React.FC<HomeProps> = () => {
 
   const { data, isLoading } = useQuery("fetchData", fetcher);
 
-  const [estadistica, setEstadistica] = useState({
-    trabajoGradoPregrado: 0,
-    produccionesIntelectualesDiep: 0,
-    publicaciones: 0,
-    diplomadosPregrado: 0,
-    diplomadosPostgrado: 0,
-    diplomadosUnidadesAnexas: 0,
-    total: 0,
-  });
-
-  useEffect(() => {
-    if (data) {
-      let data2 = data.porcentajes;
-      setEstadistica({
-        trabajoGradoPregrado: data2.trabajoGradoPregrado,
-        produccionesIntelectualesDiep: data2.produccionesIntelectualesDiep,
-        publicaciones: data2.publicaciones,
-        diplomadosPregrado: data2.diplomadosPregrado,
-        diplomadosPostgrado: data2.diplomadosPostgrado,
-        diplomadosUnidadesAnexas: data2.diplomadosUnidadesAnexas,
-        total: data2.total,
-      });
-    }
-  }, [data]);
-
   return (
     <Layout where="home">
       {isLoading ? (
@@ -56,46 +31,52 @@ const Home: React.FC<HomeProps> = () => {
           <div className="container-card-stadisticas">
             <CardStadistica
               text={"Trabajo Grado Pregrado"}
-              estadistica={estadistica.trabajoGradoPregrado}
+              estadistica={data.porcentajes.trabajoGradoPregrado}
               icono={<SiResend />}
               color={"#6bbd6d"}
               url="/"
+              cantidad={data.categoria.trabajoGradoPregrado}
             />
             <CardStadistica
               text={"Producciones Intelectuales Diep"}
-              estadistica={estadistica.produccionesIntelectualesDiep}
+              estadistica={data.porcentajes.produccionesIntelectualesDiep}
               icono={<SiResend />}
               color={"#fc6380"}
               url="/"
+              cantidad={data.categoria.produccionesIntelectualesDiep}
             />
 
             <CardStadistica
               text={"Publicaciones"}
-              estadistica={estadistica.publicaciones}
+              estadistica={data.porcentajes.publicaciones}
               icono={<SiResend />}
               color={"#4abfbe"}
               url="/"
+              cantidad={data.categoria.publicaciones}
             />
             <CardStadistica
               text={"Diplomados Pregrado"}
-              estadistica={estadistica.diplomadosPregrado}
+              estadistica={data.porcentajes.diplomadosPregrado}
               icono={<SiResend />}
               color={"#9766fd"}
               url="/"
+              cantidad={data.categoria.diplomadosPregrado}
             />
             <CardStadistica
               text={"Diplomados Postgrado"}
-              estadistica={estadistica.diplomadosPostgrado}
+              estadistica={data.porcentajes.diplomadosPostgrado}
               icono={<SiResend />}
               color={"#e16ddd"}
               url="/"
+              cantidad={data.categoria.diplomadosPostgrado}
             />
             <CardStadistica
               text={"Diplomados Unidades Anexas"}
-              estadistica={estadistica.diplomadosUnidadesAnexas}
+              estadistica={data.porcentajes.diplomadosUnidadesAnexas}
               icono={<SiResend />}
               color={"#86c8f0"}
               url="/"
+              cantidad={data.categoria.diplomadosUnidadesAnexas}
             />
           </div>
         </>

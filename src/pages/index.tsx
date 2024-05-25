@@ -1,9 +1,7 @@
+import Home from "@view/home/Home";
+
 const home = () => {
-  return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  );
-}
+  return <Home />;
+};
 
 export default home;

@@ -1,101 +1,105 @@
 import { useQuery } from "react-query";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import CardStadistica from "./components/CardStadisticas";
+
+import { useEffect, useState } from "react";
+
+import { SiResend } from "react-icons/si";
 
 import Layout from "@layout";
 import Spinner from "@spinner";
 
 interface HomeProps {}
 
-const fetcher = async () => {
-  const res = await fetch("http://localhost:8000/get-data/estadistica");
-  if (!res.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return res.json();
-};
-
 const Home: React.FC<HomeProps> = () => {
-  const { data, isLoading, error } = useQuery("fetchData", fetcher);
-
-  /*  if (isLoading) return <Spinner />; */
-
-  const labels = [
-    "Trabajo Grado Pregrado",
-    "Producciones Intelectuales Diep",
-    "Publicaciones",
-    "Diplomados Pregrado",
-    "Diplomados Postgrado",
-    "Diplomados Unidades Anexas",
-  ];
-  const chartData = {
-    datasets: [
-      {
-        label: labels[0],
-        data: data?.trabajoGradoPregrado,
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: labels[1],
-        data: data?.produccionesIntelectualesDiep,
-        backgroundColor: "rgba(255, 99, 255, 0.5)",
-      },
-      {
-        label: labels[2],
-        data: data?.publicaciones,
-        backgroundColor: "rgba(100, 99, 255, 0.5)",
-      },
-      {
-        label: labels[3],
-        data: data?.diplomadosPregrado,
-        backgroundColor: "rgba(255, 99, 0, 0.5)",
-      },
-      {
-        label: labels[4],
-        data: data?.diplomadosPostgrado,
-        backgroundColor: "rgba(255, 0, 255, 0.5)",
-      },
-      {
-        label: labels[5],
-        data: data?.diplomadosUnidadesAnexas,
-        backgroundColor: "rgba(0, 99, 255, 0.5)",
-      },
-    ],
+  const fetcher = async () => {
+    const res = await fetch("http://localhost:8000/get-data/estadistica");
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return res.json();
   };
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top" as const,
-      },
-      title: {
-        display: true,
-        text: "Chart.js Bar Chart",
-      },
-    },
-  };
+  const { data, isLoading } = useQuery("fetchData", fetcher);
+
+  const [estadistica, setEstadistica] = useState({
+    trabajoGradoPregrado: 0,
+    produccionesIntelectualesDiep: 0,
+    publicaciones: 0,
+    diplomadosPregrado: 0,
+    diplomadosPostgrado: 0,
+    diplomadosUnidadesAnexas: 0,
+    total: 0,
+  });
+
+  useEffect(() => {
+    if (data) {
+      let data2 = data.porcentajes;
+      setEstadistica({
+        trabajoGradoPregrado: data2.trabajoGradoPregrado,
+        produccionesIntelectualesDiep: data2.produccionesIntelectualesDiep,
+        publicaciones: data2.publicaciones,
+        diplomadosPregrado: data2.diplomadosPregrado,
+        diplomadosPostgrado: data2.diplomadosPostgrado,
+        diplomadosUnidadesAnexas: data2.diplomadosUnidadesAnexas,
+        total: data2.total,
+      });
+    }
+  }, [data]);
 
   return (
     <Layout where="home">
-      <Bar options={options} data={chartData} />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="container-card-stadisticas">
+            <CardStadistica
+              text={"Trabajo Grado Pregrado"}
+              estadistica={estadistica.trabajoGradoPregrado}
+              icono={<SiResend />}
+              color={"#6bbd6d"}
+              url="/"
+            />
+            <CardStadistica
+              text={"Producciones Intelectuales Diep"}
+              estadistica={estadistica.produccionesIntelectualesDiep}
+              icono={<SiResend />}
+              color={"#fc6380"}
+              url="/"
+            />
+
+            <CardStadistica
+              text={"Publicaciones"}
+              estadistica={estadistica.publicaciones}
+              icono={<SiResend />}
+              color={"#4abfbe"}
+              url="/"
+            />
+            <CardStadistica
+              text={"Diplomados Pregrado"}
+              estadistica={estadistica.diplomadosPregrado}
+              icono={<SiResend />}
+              color={"#9766fd"}
+              url="/"
+            />
+            <CardStadistica
+              text={"Diplomados Postgrado"}
+              estadistica={estadistica.diplomadosPostgrado}
+              icono={<SiResend />}
+              color={"#e16ddd"}
+              url="/"
+            />
+            <CardStadistica
+              text={"Diplomados Unidades Anexas"}
+              estadistica={estadistica.diplomadosUnidadesAnexas}
+              icono={<SiResend />}
+              color={"#86c8f0"}
+              url="/"
+            />
+          </div>
+        </>
+      )}
     </Layout>
   );
 };

@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ children, where }) => {
   const Li: React.FC<LiProps> = ({ link, text }) => {
     return (
       <li>
-        <A to={link} text={text} />
+        <A to={link}>{text}</A>
       </li>
     );
   };

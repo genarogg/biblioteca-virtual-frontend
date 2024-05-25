@@ -1,0 +1,60 @@
+.home {
+  main {
+    display: block !important;
+  }
+}
+
+.container-card-stadisticas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+
+  .card {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.2);
+    height: 85px;
+    border-radius: 20px;
+
+    max-width: 360px;
+    min-width: 360px;
+
+    .container-icono {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h2 {
+      width: 100%;
+      font-size: 20px;
+    }
+    .estadistica {
+      margin-left: 10px;
+
+      svg {
+        width: 70px;
+        height: 70px;
+        background: #000000;
+        border-radius: 50%;
+
+        text {
+          font-size: 20px;
+          font-weight: 700;
+          fill: #fff;
+        }
+      }
+    }
+  }
+}
+
+.home {
+  main {
+    display: block !important;
+  }
+}

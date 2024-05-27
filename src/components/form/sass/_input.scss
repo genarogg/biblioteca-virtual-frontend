@@ -15,6 +15,28 @@
   &.textarea {
     height: 100%;
     display: flex;
+
+    &.enriquecido {
+      .quill {
+        width: 100%;
+        max-width: 740px;
+        height: 100%;
+      }
+
+      .ql-container {
+        border: none;
+
+      }
+
+      .ql-toolbar {
+        border: none;
+        border-bottom: 1px solid #aaa;
+      }
+
+      /* span.holder{
+        top: 60px;
+      } */
+    }
   }
 
   &,

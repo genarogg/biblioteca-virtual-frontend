@@ -10,3 +10,21 @@ button {
 a {
   text-decoration: none;
 }
+
+.hover-tamano {
+  transition: transform 0.3s;
+}
+
+.hover-tamano:active {
+  transform: scale(0.8);
+}
+
+//cambia el color del scroll
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3d65fd;
+  border-radius: 10px;
+}

@@ -19,6 +19,7 @@
       "@layout": ["./src/components/layout/Layout.tsx"],
       "@form": ["./src/components/form/index.tsx"],
       "@spinner": ["./src/components/spinner/Spinner.tsx"],
+      "@env": ["./env.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

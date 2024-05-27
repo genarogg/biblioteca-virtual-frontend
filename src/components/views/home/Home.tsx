@@ -28,6 +28,13 @@ const Home: React.FC<HomeProps> = () => {
         <Spinner />
       ) : (
         <>
+          <div className="titulo-trabajos">
+            <h2>
+              trabajos totales <br /> en la plataforma {data.porcentajes.total}
+            </h2>
+
+            <span></span>
+          </div>
           <div className="container-card-stadisticas">
             <CardStadistica
               text={"Trabajo Grado Pregrado"}

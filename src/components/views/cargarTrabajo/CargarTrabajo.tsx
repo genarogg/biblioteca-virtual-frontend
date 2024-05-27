@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "@layout";
-import { Input, InputFile, Select, TextArea } from "@form";
+import { Input, InputFile, Select, TextArea, TextAreaEnriquecido } from "@form";
 
 import {
   FaEnvelope,
@@ -155,14 +155,21 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
               }}
             />
 
-            <TextArea
+            {/* <TextArea
               name="descripcion"
-              placeholder="descripcion"
+              placeholder="Resumen del trabajo"
               value={formData.descripcion}
               valueChange={(e) =>
                 setFormData({ ...formData, descripcion: e.target.value })
               }
-            ></TextArea>
+            ></TextArea> */}
+            <TextAreaEnriquecido
+              placeholder="Resumen del trabajo"
+              value={formData.descripcion}
+              valueChange={(value) =>
+                setFormData({ ...formData, descripcion: value })
+              }
+            />
           </div>
           <div className="submit-container">
             <button type="submit" disabled={loading}>

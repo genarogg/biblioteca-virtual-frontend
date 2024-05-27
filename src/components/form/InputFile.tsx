@@ -68,6 +68,7 @@ const Input: React.FC<InputFileProps> = ({
         type="file"
         name={name}
         required={required}
+        accept=".pdf"
         id={id}
         ref={fileInput}
         onFocus={() => setIsFocused(true)}

@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 
 import CardStadistica from "./components/CardStadisticas";
 
-import { useEffect, useState } from "react";
+
 
 import { SiResend } from "react-icons/si";
 

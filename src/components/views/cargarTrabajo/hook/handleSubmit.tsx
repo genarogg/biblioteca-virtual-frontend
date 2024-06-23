@@ -58,7 +58,7 @@ const handleSubmit = async (
     setLoading(false);
 
     if (!responseUpPDF.ok) {
-      notify({ message: "Error al cargar el Trabajo", type: "error" });
+      notify({ message: "Error al cargar el pdf", type: "error" });
       return;
     }
 

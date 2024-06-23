@@ -112,7 +112,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
               icono={<FaFilePdf />}
               id="file"
               name="file"
-              placeholder="Cargar archivo PDF"
+              placeholder="Cargar archivo PDF (TEG | TG | TD)"
               valueChange={(e: any) => {
                 setFormData({ ...formData, archivo: e });
               }}

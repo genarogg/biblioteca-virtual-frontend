@@ -55,9 +55,11 @@ const handleSubmit = async (
       body: dataUpPDF,
     });
 
+    setLoading(false);
+
     if (!responseUpPDF.ok) {
       notify({ message: "Error al cargar el Trabajo", type: "error" });
-      throw new Error("La respuesta de la red al subir el pdf");
+      return;
     }
 
     const responseDataUpPDF = await responseUpPDF.json();
@@ -74,13 +76,26 @@ const handleSubmit = async (
       body: JSON.stringify(dataToSend),
     });
 
+    setLoading(false);
+
+    const data = await response.json();
+
+    if (
+      data.error &&
+      data.error.details.errors.some((error: any) =>
+        error.path.includes("titulo")
+      )
+    ) {
+      notify({ message: "Trabajo dublicado", type: "error" });
+      return;
+    }
+
     if (!response.ok) {
       notify({ message: "Error al cargar el Trabajo", type: "error" });
-      throw new Error("La respuesta de la red no fue ok");
+      return;
     }
 
     notify({ message: "¡Trabajo Cargado!", type: "success" });
-
     setLoading(false);
   } catch (error) {
     console.error("Hubo un problema con la operación fetch:", error);

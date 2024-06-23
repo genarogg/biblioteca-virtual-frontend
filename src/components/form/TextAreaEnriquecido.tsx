@@ -26,7 +26,7 @@ const TextAreaEnriquecido: React.FC<TextAreaEnriquecidoProps> = ({
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  /* const [hasContent, setHasContent] = useState(content); */
+  const [hasContent, setHasContent] = useState(content);
 
   const handleInputChange = (event: any) => {
     /* setHasContent(event.target.value !== ""); */
@@ -50,9 +50,9 @@ const TextAreaEnriquecido: React.FC<TextAreaEnriquecidoProps> = ({
           onChange={handleInputChange}
           placeholder={placeholder}
         />
-        {/*  <span className={`holder ${hasContent ? "has-content" : ""}`}>
+         <span className={`holder ${hasContent ? "has-content" : ""}`}>
           {placeholder}
-        </span> */}
+        </span>
       </div>
     </>
   );

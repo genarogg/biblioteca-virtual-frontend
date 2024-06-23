@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa6";
 import useCategorias from "./hook/useCategorias";
 import handleSubmit from "./hook/handleSubmit";
-import { Bounce, toast } from "react-toastify";
+
 
 interface CargarTrabajoProps {}
 
@@ -120,6 +120,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
 
             <TextAreaEnriquecido
               placeholder="Resumen del trabajo"
+              content={true}
               value={formData.descripcion}
               valueChange={(value) =>
                 setFormData({ ...formData, descripcion: value })

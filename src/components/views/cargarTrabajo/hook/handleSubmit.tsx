@@ -1,4 +1,5 @@
-// useSubmitForm.ts
+import { notify } from "@nano";
+
 const handleSubmit = async (
   e: any,
   formData: any,
@@ -55,16 +56,14 @@ const handleSubmit = async (
     });
 
     if (!responseUpPDF.ok) {
+      notify({ message: "Error al cargar el Trabajo", type: "error" });
       throw new Error("La respuesta de la red al subir el pdf");
     }
 
     const responseDataUpPDF = await responseUpPDF.json();
 
-    console.log("responseUpPDF");
     // crear la entrada de trabajo
-    setLoading(false);
     const dataToSend = transformData(responseDataUpPDF[0]);
-    console.log(dataToSend);
 
     const response = await fetch(`${backendUrl}/api/trabajos`, {
       method: "POST",
@@ -76,11 +75,13 @@ const handleSubmit = async (
     });
 
     if (!response.ok) {
+      notify({ message: "Error al cargar el Trabajo", type: "error" });
       throw new Error("La respuesta de la red no fue ok");
     }
 
-    const responseData = await response.json();
-    console.log(responseData);
+    notify({ message: "¡Trabajo Cargado!", type: "success" });
+
+    setLoading(false);
   } catch (error) {
     console.error("Hubo un problema con la operación fetch:", error);
   }

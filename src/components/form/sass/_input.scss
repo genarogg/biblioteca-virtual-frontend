@@ -16,8 +16,18 @@
     height: 100%;
     display: flex;
     min-height: 252px;
-    
+
     &.enriquecido {
+      .ql-formats * {
+        color: $azul !important;
+        stroke: $azul !important;
+      }
+
+      .ql-editor {
+        font-size: 16px;
+
+        color: $azul;
+      }
       .quill {
         width: 100%;
         max-width: 740px;
@@ -27,7 +37,6 @@
 
       .ql-container {
         border: none;
-
       }
 
       .ql-toolbar {

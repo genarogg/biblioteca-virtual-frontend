@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "@layout";
-import { Input, InputFile, Select, TextArea, TextAreaEnriquecido } from "@form";
+import { Input, InputFile, Select, TextAreaEnriquecido } from "@form";
 
 import {
   FaEnvelope,
@@ -11,14 +11,17 @@ import {
   FaTableList,
   FaFilePdf,
 } from "react-icons/fa6";
-
-import categoriaData from "./categoria";
+import useCategorias from "./hook/useCategorias";
+import handleSubmit from "./hook/handleSubmit";
 import { Bounce, toast } from "react-toastify";
 
 interface CargarTrabajoProps {}
 
 const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
   const [loading, setLoading] = useState(false);
+
+  const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+  const strapiToken = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
 
   const [formData, setFormData] = useState({
     nombreAutor: "",
@@ -31,76 +34,16 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
     archivo: new File([], ""),
   });
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    setLoading(true);
-
-    const token = "2cdc3391c29d5d86578e62d19ce8fee669f45db0f3ace43becfdf722415d0fbf67a4db19debfc9e38dd73a9d2c3162ea26147437bdd25ec14bd599f7920c716d7ab4305c8925a95c67d9a4fab08eff350fb2854200c81b5da220c91eb59aee1a591394c461ce4007da61d25cb2ebdd69abe6dcbc1bd71e87a697e42ddcd54ac4";
-
-    try {
-      const data = new FormData();
-      data.append("files", formData.archivo); 
-
-      const response = await fetch("http://localhost:1337/api/upload", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: data,
-      });
-
-      if (!response.ok) {
-        throw new Error("La respuesta de la red no fue ok");
-      }
-
-      const responseData = await response.json();
-      console.log(responseData);
-      // Maneja la respuesta exitosa aquí
-    } catch (error) {
-      console.error("Hubo un problema con la operación fetch:", error);
-    } finally {
-      setLoading(false);
-    }
-
-    /*  fetch("http://localhost:8000/cargar-trabajo", {
-      method: "POST",
-      body: data,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setLoading(false);
-       
-        toast.success(data.message, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
-
-        toast.error(data.error, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
-      })
-      .catch((error) => console.error(error)); */
-  };
+  const categorias = useCategorias(backendUrl, strapiToken);
 
   return (
     <Layout>
       <div className="container-form">
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(e) =>
+            handleSubmit(e, formData, setLoading, backendUrl, strapiToken)
+          }
+        >
           <div className="container-info-user">
             <Input
               icono={<FaRegFaceGrin />}
@@ -156,7 +99,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
             />
 
             <Select
-              data={categoriaData}
+              data={categorias}
               icono={<FaTableList />}
               name="categoria"
               placeholder="categoria"

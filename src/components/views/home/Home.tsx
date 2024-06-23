@@ -12,6 +12,8 @@ import Spinner from "@spinner";
 interface HomeProps {}
 
 const Home: React.FC<HomeProps> = () => {
+
+  console.log(process.env.STRAPI_API_URL)
   const fetcher = async () => {
     const res = await fetch("http://localhost:8000/get-data/estadistica");
     if (!res.ok) {

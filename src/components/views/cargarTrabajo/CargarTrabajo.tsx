@@ -31,25 +31,45 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
     archivo: new File([], ""),
   });
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
 
-    const data = new FormData();
+    const token = "2cdc3391c29d5d86578e62d19ce8fee669f45db0f3ace43becfdf722415d0fbf67a4db19debfc9e38dd73a9d2c3162ea26147437bdd25ec14bd599f7920c716d7ab4305c8925a95c67d9a4fab08eff350fb2854200c81b5da220c91eb59aee1a591394c461ce4007da61d25cb2ebdd69abe6dcbc1bd71e87a697e42ddcd54ac4";
 
-    // Iterar sobre las propiedades de formData y agregarlas a data
-    for (const key in formData) {
-      // @ts-ignore
-      data.append(key, formData[key]);
+    try {
+      const data = new FormData();
+      data.append("files", formData.archivo); 
+
+      const response = await fetch("http://localhost:1337/api/upload", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: data,
+      });
+
+      if (!response.ok) {
+        throw new Error("La respuesta de la red no fue ok");
+      }
+
+      const responseData = await response.json();
+      console.log(responseData);
+      // Maneja la respuesta exitosa aquí
+    } catch (error) {
+      console.error("Hubo un problema con la operación fetch:", error);
+    } finally {
+      setLoading(false);
     }
 
-    fetch("http://localhost:8000/cargar-trabajo", {
+    /*  fetch("http://localhost:8000/cargar-trabajo", {
       method: "POST",
       body: data,
     })
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
+       
         toast.success(data.message, {
           position: "top-right",
           autoClose: 5000,
@@ -74,7 +94,7 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
           transition: Bounce,
         });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error)); */
   };
 
   return (
@@ -155,14 +175,6 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
               }}
             />
 
-            {/* <TextArea
-              name="descripcion"
-              placeholder="Resumen del trabajo"
-              value={formData.descripcion}
-              valueChange={(e) =>
-                setFormData({ ...formData, descripcion: e.target.value })
-              }
-            ></TextArea> */}
             <TextAreaEnriquecido
               placeholder="Resumen del trabajo"
               value={formData.descripcion}

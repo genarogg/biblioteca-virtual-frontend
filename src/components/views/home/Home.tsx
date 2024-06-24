@@ -42,7 +42,7 @@ const Home: React.FC<HomeProps> = () => {
                   text={nombre}
                   estadistica={porcentaje}
                   color={color}
-                  url={`/categoria/${id}`}
+                  url={`/categoria/${nombre.toLowerCase().replaceAll(" ", "-")}`}
                   cantidad={contador}
                 />
               )

@@ -20,6 +20,7 @@ const Documento: React.FC<DocumentoProps> = ({ data }) => {
   }, [data.descripcion]);
 
   const date = new Date(data.createdAt);
+  
   const formattedDate = `${date.getFullYear()}-${String(
     date.getMonth() + 1
   ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;

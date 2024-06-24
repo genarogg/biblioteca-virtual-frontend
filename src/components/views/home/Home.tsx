@@ -34,17 +34,19 @@ const Home: React.FC<HomeProps> = () => {
             <span></span>
           </div>
 
-          {/* {Object.entries(categoriaMapa[0]).map(([id, categoria]: any) => (
-            <CardStadistica
-              key={id}
-              text={categoria.nombre}
-              estadistica={categoria.contador}
-              icono={categoria.icono.url}
-              color={categoria.color}
-              url={categoria.icono.url}
-              cantidad={categoria.contador}
-            />
-          ))} */}
+      
+          {categoriaMapa.map(
+            ({ id, nombre, color, contador, porcentaje }: any) => (
+              <CardStadistica
+                key={id}
+                text={nombre}
+                estadistica={porcentaje}
+                color={color}
+                url={`/categoria/${id}`}
+                cantidad={contador}
+              />
+            )
+          )}
         </>
       )}
     </Layout>

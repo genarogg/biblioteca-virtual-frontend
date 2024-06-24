@@ -1,16 +1,5 @@
 import { notify } from "@nano";
 
-interface Categoria {
-  nombre: string;
-  color: string;
-  posicion: number;
-  contador: number;
-  icono: {
-    url: string;
-    name: string;
-  };
-}
-
 const fetchCategoriasEstadisticas = async (
   setLoading: any,
   setCategoriaMapa: any
@@ -28,7 +17,7 @@ const fetchCategoriasEstadisticas = async (
     });
 
     const queryCategoria =
-      "/api/categorias?fields[0]=id&fields[1]=nombre&fields[2]=color&fields[3]=posicion&populate[icono][fields][0]=url&populate[icono][fields][1]=name";
+      "/api/categorias?fields[0]=id&fields[1]=nombre&fields[2]=color&fields[3]=posicion";
     const responseCategorias = await fetch(`${backendUrl + queryCategoria}`, {
       method: "GET",
       headers: {
@@ -50,33 +39,46 @@ const fetchCategoriasEstadisticas = async (
       categorias: await responseCategorias.json(),
     };
 
-    const mapaCategorias: { [key: string]: Categoria } = {};
+    const mapaCategorias: any = [];
 
+    // Paso 1: Convertir categorias a objetos y agregarlos al array
     data.categorias.data.forEach((categoria: any) => {
       const { id, attributes } = categoria;
-      mapaCategorias[id] = {
+      mapaCategorias.push({
+        id: id,
         nombre: attributes.nombre,
         color: attributes.color,
         posicion: attributes.posicion,
         contador: 0,
-        icono: {
-          url: attributes.icono.data.attributes.url,
-          name: attributes.icono.data.attributes.name,
-        },
-      };
+      });
     });
 
     // Paso 2: Iterar sobre los trabajos para actualizar el contador
     data.work.data.forEach((trabajo: any) => {
       const categoriaId = trabajo.attributes.categoria.data.id;
-      if (mapaCategorias[categoriaId]) {
-        mapaCategorias[categoriaId].contador += 1;
+      const categoriaIndex = mapaCategorias.findIndex(
+        (categoria: any) => categoria.id === categoriaId
+      );
+      if (categoriaIndex !== -1) {
+        mapaCategorias[categoriaIndex].contador += 1;
       }
     });
 
-    const dataFinal = [mapaCategorias];
+    // Paso 3: Calcular el total de trabajos
+    const totalTrabajos = data.work.data.length;
 
-    setCategoriaMapa(dataFinal);
+    // Paso 4: Calcular el porcentaje de cada categoría
+    mapaCategorias.forEach((categoria: any) => {
+      if (totalTrabajos > 0) {
+        categoria.porcentaje = Math.round(
+          (categoria.contador / totalTrabajos) * 100
+        );
+      } else {
+        categoria.porcentaje = 0;
+      }
+    });
+
+    setCategoriaMapa(mapaCategorias);
   } catch (error) {
     console.error("Hubo un problema con la operación fetch:", error);
   }

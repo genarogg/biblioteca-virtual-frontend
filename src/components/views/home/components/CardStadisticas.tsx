@@ -1,10 +1,9 @@
-import { Icono, A } from "@nano";
+import { A } from "@nano";
 
 import Circle from "./Circle";
 
 interface CardStadisticaProps {
   estadistica: number;
-  icono: React.ReactNode;
   text: string;
   color: string;
   url: string;
@@ -13,7 +12,6 @@ interface CardStadisticaProps {
 
 const CardStadistica: React.FC<CardStadisticaProps> = ({
   estadistica,
-  icono,
   text,
   color,
   url,

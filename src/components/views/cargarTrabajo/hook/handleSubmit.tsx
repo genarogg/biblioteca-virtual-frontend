@@ -35,6 +35,7 @@ const handleSubmit = async (
         cedulaAutor: formData.cedulaAutor,
 
         PDF: responseDataUpPDF,
+        publishedAt: null,
       },
     };
 
@@ -66,6 +67,8 @@ const handleSubmit = async (
 
     // crear la entrada de trabajo
     const dataToSend = transformData(responseDataUpPDF[0]);
+
+  
 
     const response = await fetch(`${backendUrl}/api/trabajos`, {
       method: "POST",

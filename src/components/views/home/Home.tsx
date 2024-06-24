@@ -36,7 +36,7 @@ const Home: React.FC<HomeProps> = () => {
 
           <div className="container-card-stadisticas">
             {categoriaMapa.map(
-              ({ id, nombre, color, contador, porcentaje }: any) => (
+              ({ id, nombre, color, contador, porcentaje,url }: any) => (
                 <CardStadistica
                   key={id}
                   text={nombre}

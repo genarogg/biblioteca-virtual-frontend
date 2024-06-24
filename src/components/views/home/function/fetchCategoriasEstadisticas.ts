@@ -47,6 +47,7 @@ const fetchCategoriasEstadisticas = async (
       mapaCategorias.push({
         id: id,
         nombre: attributes.nombre,
+       
         color: attributes.color,
         posicion: attributes.posicion,
         contador: 0,

@@ -39,6 +39,8 @@ const fetchCategoriasEstadisticas = async (
       categorias: await responseCategorias.json(),
     };
 
+    console.log(data);
+
     const mapaCategorias: any = [];
 
     // Paso 1: Convertir categorias a objetos y agregarlos al array
@@ -56,12 +58,17 @@ const fetchCategoriasEstadisticas = async (
 
     // Paso 2: Iterar sobre los trabajos para actualizar el contador
     data.work.data.forEach((trabajo: any) => {
-      const categoriaId = trabajo.attributes.categoria.data.id;
-      const categoriaIndex = mapaCategorias.findIndex(
-        (categoria: any) => categoria.id === categoriaId
-      );
-      if (categoriaIndex !== -1) {
-        mapaCategorias[categoriaIndex].contador += 1;
+      if (trabajo.attributes.categoria.data) {
+        // Verifica si data no es null
+        const categoriaId = trabajo.attributes.categoria.data.id;
+        const categoriaIndex = mapaCategorias.findIndex(
+          (categoria: any) => categoria.id === categoriaId
+        );
+        if (categoriaIndex !== -1) {
+          mapaCategorias[categoriaIndex].contador += 1;
+        }
+      } else {
+        // Opcional: manejar el caso en que la categoría es null
       }
     });
 

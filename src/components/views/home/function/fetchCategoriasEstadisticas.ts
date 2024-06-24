@@ -17,7 +17,7 @@ const fetchCategoriasEstadisticas = async (
     });
 
     const queryCategoria =
-      "/api/categorias?fields[0]=id&fields[1]=nombre&fields[2]=color&fields[3]=posicion";
+      "/api/categorias?fields[0]=id&fields[1]=nombre&fields[2]=color&fields[3]=posicion&fields[4]=url";
     const responseCategorias = await fetch(`${backendUrl + queryCategoria}`, {
       method: "GET",
       headers: {
@@ -47,7 +47,7 @@ const fetchCategoriasEstadisticas = async (
       mapaCategorias.push({
         id: id,
         nombre: attributes.nombre,
-       
+        url: attributes.url,
         color: attributes.color,
         posicion: attributes.posicion,
         contador: 0,

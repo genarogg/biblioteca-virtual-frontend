@@ -18,8 +18,6 @@ const Home: React.FC<HomeProps> = () => {
     setLoading(false);
   }, []);
 
-  console.log(categoriaMapa);
-
   return (
     <Layout where="home">
       {loading ? (
@@ -42,7 +40,7 @@ const Home: React.FC<HomeProps> = () => {
                   text={nombre}
                   estadistica={porcentaje}
                   color={color}
-                  url={`/categoria/${nombre.toLowerCase().replaceAll(" ", "-")}`}
+                  url={`/categoria/${url}`}
                   cantidad={contador}
                 />
               )

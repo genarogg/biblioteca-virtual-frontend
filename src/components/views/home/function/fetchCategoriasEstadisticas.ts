@@ -78,6 +78,10 @@ const fetchCategoriasEstadisticas = async (
       }
     });
 
+    mapaCategorias.sort(
+      (a: any, b: any) => parseInt(a.posicion) - parseInt(b.posicion)
+    );
+
     setCategoriaMapa(mapaCategorias);
   } catch (error) {
     console.error("Hubo un problema con la operación fetch:", error);

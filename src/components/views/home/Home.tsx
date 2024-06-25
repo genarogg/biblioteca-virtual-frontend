@@ -6,6 +6,7 @@ import fetchCategoriasEstadisticas from "./function/fetchCategoriasEstadisticas"
 import Layout from "@layout";
 import Spinner from "@spinner";
 
+import { AlgoliaSearch } from "@nano";
 interface HomeProps {}
 
 const Home: React.FC<HomeProps> = () => {
@@ -25,16 +26,13 @@ const Home: React.FC<HomeProps> = () => {
       ) : (
         <>
           <div className="titulo-trabajos">
-            <h2>
-              {/* trabajos totales <br /> en la plataforma {data.porcentajes.total} */}
-            </h2>
-
-            <span></span>
+            <AlgoliaSearch />
+            <span></span> {/* // no quitar */}
           </div>
 
           <div className="container-card-stadisticas">
             {categoriaMapa.map(
-              ({ id, nombre, color, contador, porcentaje,url }: any) => (
+              ({ id, nombre, color, contador, porcentaje, url }: any) => (
                 <CardStadistica
                   key={id}
                   text={nombre}

@@ -123,9 +123,8 @@ const Documentos: React.FC<Documentos> = ({ data }) => {
         <Spinner />
       ) : (
         <div className="container-documentos">
-          <div className="search">
-            <AlgoliaSearch />
-          </div>
+          <AlgoliaSearch />
+
           <div className="info">
             {info.data.map((documento: any) => (
               <Card

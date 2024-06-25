@@ -1,4 +1,11 @@
 .algolia {
+  box-shadow: 0 0 30px rgba(1, 41, 112, 0.2);
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 7px;
+  border: 1px solid #4153f2;
+  width: 100%;
+
   position: relative;
   input[type="search"] {
     width: 100%;
@@ -51,7 +58,9 @@
     border-radius: 7px;
     box-shadow: 0 0 0px 3px $azul;
     padding-top: 10px;
-
+    width: 100%;
+    text-align: left;
+    
     .card-search {
       padding: 0 15px;
 

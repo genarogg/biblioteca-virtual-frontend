@@ -3,6 +3,8 @@ import Spinner from "@spinner";
 import Layout from "@layout";
 
 import Link from "next/link";
+
+import { AlgoliaSearch } from "@nano";
 interface Documentos {
   data: any;
 }
@@ -85,7 +87,9 @@ const Documentos: React.FC<Documentos> = ({ data }) => {
       };
 
       obtenerInformacion();
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     }
   }, [data, paginaActual]);
 
@@ -103,7 +107,7 @@ const Documentos: React.FC<Documentos> = ({ data }) => {
         />
         <div className="footer">
           <div className="link">
-            <a href={`/documentos/${urlCodificada}`}>ver publicacion</a>
+            <Link href={`/documentos/${urlCodificada}`}>ver publicacion</Link>
           </div>
           <p className="autor">
             <span> Autor:</span> {nombreAutor} {apellidoAutor}
@@ -120,8 +124,7 @@ const Documentos: React.FC<Documentos> = ({ data }) => {
       ) : (
         <div className="container-documentos">
           <div className="search">
-            <input type="text" placeholder="Buscar..." />
-            <button>Buscar</button>
+            <AlgoliaSearch />
           </div>
           <div className="info">
             {info.data.map((documento: any) => (

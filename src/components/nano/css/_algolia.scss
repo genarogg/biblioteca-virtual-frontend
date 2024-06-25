@@ -1,0 +1,105 @@
+.algolia {
+  position: relative;
+  input[type="search"] {
+    width: 100%;
+    border: none;
+    height: 50px;
+    outline: none;
+    padding: 0 15px;
+
+    background-color: transparent;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    outline: none;
+
+    color: #4153f2;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #3d65fd;
+  }
+
+  button[type="submit"],
+  button[type="reset"] {
+    display: none;
+  }
+
+  ul {
+    display: grid;
+    gap: 20px;
+
+    li {
+      list-style-type: none;
+    }
+  }
+
+  .container-result {
+    position: absolute;
+    z-index: 1000;
+    background-color: #fff;
+
+    max-height: 340px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    margin-top: 10px;
+    border: 1px solid $azul;
+    border-radius: 7px;
+    box-shadow: 0 0 0px 3px $azul;
+    padding-top: 10px;
+
+    .card-search {
+      padding: 0 15px;
+
+      h2 {
+        color: $azul;
+        margin-bottom: 5px;
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+
+      .descripcion {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+          /* color: $azul; */
+          font-size: 16px;
+          font-weight: 600;
+          color: #616161;
+        }
+      }
+
+      .footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 15px 0;
+
+        color: $azul;
+        font-size: 16px;
+        font-weight: 600;
+
+        .autor {
+          text-align: right;
+          text-transform: capitalize;
+        }
+
+        .link {
+          a {
+            background-color: #41adf2;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

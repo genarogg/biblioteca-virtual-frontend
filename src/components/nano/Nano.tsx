@@ -4,4 +4,6 @@ import Gravatar from "./Gravatar";
 import BtnHamburgues from "./btn/BtnHamburgues";
 import notify from "./notify";
 
-export { A, Icono, Gravatar, BtnHamburgues, notify };
+import AlgoliaSearch from "./AlgoliaSearch";
+
+export { A, Icono, Gravatar, BtnHamburgues, AlgoliaSearch, notify };

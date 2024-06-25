@@ -1,26 +1,15 @@
 .container-trabajo {
-  /* max-width: 1200px;
+  max-width: 1200px;
+  min-width: 1024px;
   padding: 20px 30px;
-  border: 1px solid #dbdbdb;
-  background-color: #fff;
-  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.2);
+  border: 1px solid #d7d8ba;
+  background-color: #fff0;
+  box-shadow: 0 0 0px 4px #fff, 0px 0 30px rgba(1, 41, 112, 0.2);
   border-radius: 20px;
-
   display: flex;
   justify-content: space-between;
-
-  position: relative; */
-
-  max-width: 1200px;
-    padding: 20px 30px;
-    border: 1px solid #d7d8ba;
-    background-color: #fff0;
-    box-shadow: 0 0 0px 4px #fff, 0px 0 30px rgba(1, 41, 112, 0.2);
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    backdrop-filter: blur(5px);
+  position: relative;
+  backdrop-filter: blur(5px);
 
   .info {
     width: 70%;

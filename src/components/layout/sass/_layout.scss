@@ -9,10 +9,11 @@ body,
   justify-content: center;
   width: 100%;
   background-color: #f6f9ff;
-  background-image: url(../../../img/bg2.webp);
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
 
   header {
     width: 100%;
@@ -38,7 +39,6 @@ body,
     display: flex;
   }
 }
-
 
 @import "header/header";
 @import "footer/footer";

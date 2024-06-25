@@ -3,24 +3,55 @@ import { jsPDF } from "jspdf";
 import Spinner from "@spinner";
 import Layout from "@layout";
 
-import { URL_BACKEND } from "@env";
-
 interface DocumentoProps {
   data: any;
 }
 
+interface Descripcion {
+  titulo?: string;
+  descripcion?: string;
+  createdAt?: string;
+  pdf?: string;
+  categoria?: string;
+  downloader?: boolean;
+  nombreAutor?: string;
+  apellidoAutor?: string;
+  cedulaAutor?: string;
+  emailAutor?: string;
+  // Agrega cualquier otra propiedad que necesites
+}
+
 const Documento: React.FC<DocumentoProps> = ({ data }) => {
+  const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+
   const [loading, setLoading] = useState(true);
-  const [descripcion, setDescripcion] = useState("");
+  const [descripcion, setDescripcion] = useState<Descripcion>({});
 
   useEffect(() => {
     // Asume que fetchDescripcion es una función que obtiene la descripción
-    setDescripcion(data.descripcion);
-    setLoading(false);
-  }, [data.descripcion]);
 
-  const date = new Date(data.createdAt);
-  
+    const transformedArray = data.map((item: any) => ({
+      titulo: item.attributes.titulo,
+      descripcion: item.attributes.descripcion[0].children[0].text,
+      createdAt: item.attributes.createdAt,
+      pdf: item.attributes.PDF.data.attributes.url,
+      categoria: item.attributes.categoria.data.attributes.nombre,
+      downloader: item.attributes.downloader,
+      nombreAutor: item.attributes.nombreAutor,
+      apellidoAutor: item.attributes.apellidoAutor,
+      cedulaAutor: item.attributes.cedulaAutor,
+      emailAutor: item.attributes.emailAutor,
+    }));
+
+    console.log(transformedArray);
+
+    setDescripcion(transformedArray[0]);
+    setLoading(false);
+  }, [data]);
+
+  //@ts-ignore
+  const date = new Date(descripcion.createdAt);
+
   const formattedDate = `${date.getFullYear()}-${String(
     date.getMonth() + 1
   ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
@@ -30,8 +61,8 @@ const Documento: React.FC<DocumentoProps> = ({ data }) => {
     const doc = new jsPDF();
 
     if (input) {
-      const lines = doc.splitTextToSize(input, 160); // Ajusta el segundo parámetro según el tamaño de la página
-      doc.text(lines, 20, 30); // Los números son las coordenadas x e y respectivamente
+      const lines = doc.splitTextToSize(input, 160);
+      doc.text(lines, 20, 30);
       doc.save(data.titulo + ".pdf");
     }
   };
@@ -43,49 +74,62 @@ const Documento: React.FC<DocumentoProps> = ({ data }) => {
           <Spinner />
         </>
       ) : (
-        <div className="container-trabajo">
-          <div className="info">
-            <h1 className="titulo">{data.titulo}</h1>
-            <div className="descripcion" id="divToPrint">
-              <p dangerouslySetInnerHTML={{ __html: descripcion }}></p>;
-            </div>
-            <div className="footer">
-              <div className="pdf ">
-                <button
-                className="hover-tamano"
-                  onClick={() => {
-                    printDocument();
+        <>
+          <div className="container-trabajo">
+            <div className="info">
+              <h1 className="titulo">{descripcion.titulo}</h1>
+              <div className="descripcion" id="divToPrint">
+                {/* Aquí asumimos que la descripción es un texto simple o HTML seguro para renderizar */}
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: descripcion.descripcion || "",
                   }}
-                >
-                  Descargar Resumen
-                </button>
-                <span className="separador "></span>
-                {data.downloader ? (
-                  <>
-                    <a className="hover-tamano" href={URL_BACKEND + "/uploads/" + data.rutaPDF} download>
-                      Descargar trabajo
-                    </a>
-                    <span className="separador "></span>
-                  </>
-                ) : null}
+                ></p>
               </div>
+              <div className="footer">
+                <div className="pdf ">
+                  <button
+                    className="hover-tamano"
+                    onClick={() => {
+                      printDocument();
+                    }}
+                  >
+                    Descargar Resumen
+                  </button>
+                  <span className="separador "></span>
+                  {descripcion.downloader ? (
+                    <>
+                      <a
+                        className="hover-tamano"
+                        /* @ts-ignore */
+                        href={backendUrl + descripcion.pdf}
+                        download
+                      >
+                        Descargar trabajo
+                      </a>
+                      <span className="separador "></span>
+                    </>
+                  ) : null}
+                </div>
 
-              <p className="categoria">Categoria: {data.categoria}</p>
+                <p className="categoria">Categoria: {descripcion.categoria}</p>
+              </div>
+            </div>
+            <span className="separador "></span>
+            <div className="autor">
+              <div className="titulo">Datos del Autor</div>
+              <div className="info-autor">
+                <h2>
+                  Nombre: {descripcion.nombreAutor} {descripcion.apellidoAutor}
+                </h2>
+                <p>Cedula: {descripcion.cedulaAutor}</p>
+                <p>Email: {descripcion.emailAutor}</p>
+                {/* Asegúrate de actualizar la generación de la fecha para usar descripcion.createdAt */}
+                <p>Fecha: {formattedDate}</p>
+              </div>
             </div>
           </div>
-          <span className="separador "></span>
-          <div className="autor">
-            <div className="titulo">Datos del Autor</div>
-            <div className="info-autor">
-              <h2>
-                Nombre: {data.nombreAutor} {data.apellidoAutor}
-              </h2>
-              <p>Cedula: {data.cedulaAutor}</p>
-              <p>Email: {data.emailAutor}</p>
-              <p>Fecha: {formattedDate}</p>
-            </div>
-          </div>
-        </div>
+        </>
       )}
     </Layout>
   );

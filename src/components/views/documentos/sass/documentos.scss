@@ -1,0 +1,112 @@
+.container-documentos {
+  width: 100%;
+  padding: 25px;
+  overflow: hidden;
+  overflow-y: auto;
+  min-height: 600px;
+  max-width: 825px;
+  min-width: 360px;
+
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  display: grid;
+  gap: 30px;
+
+  > div {
+    box-shadow: 0 0 30px rgba(1, 41, 112, 0.2);
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 7px;
+  }
+
+  .info {
+    padding: 15px 20px;
+    display: grid;
+    gap: 20px;
+
+    .card-documentos {
+      /* box-shadow: 0 0 30px rgba(1, 41, 112, 0.2); */
+
+      border: 1px solid rgba(#4153f2, 0.5);
+      padding: 10px;
+      border-radius: 10px;
+      min-width: 733px;
+      max-width: 733px;
+
+      h2 {
+        color: $azul;
+        margin-bottom: 5px;
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+
+      .descripcion {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+          /* color: $azul; */
+          font-size: 16px;
+          font-weight: 600;
+          color: #616161;
+        }
+      }
+
+      .footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 15px 0;
+
+        color: $azul;
+        font-size: 16px;
+        font-weight: 600;
+
+        .autor {
+          text-align: right;
+          text-transform: capitalize;
+        }
+
+        .link {
+          a {
+            background-color: #41adf2;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .paginacion {
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+
+    .container-nav {
+      box-shadow: 0 0 30px rgba(1, 41, 112, 0.2);
+      background-color: #fff;
+      border: 1px solid #fff;
+      border-radius: 7px;
+    }
+
+    button {
+      background-color: #41adf2;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      margin: 5px 7px;
+    }
+  }
+}

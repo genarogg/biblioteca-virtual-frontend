@@ -14,14 +14,15 @@ import {
 import useCategorias from "./hook/useCategorias";
 import handleSubmit from "./hook/handleSubmit";
 
+import { STRAPI_API_URL, STRAPI_TOKEN } from "@env";
 
 interface CargarTrabajoProps {}
 
 const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
   const [loading, setLoading] = useState(false);
 
-  const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-  const strapiToken = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
+  const backendUrl = STRAPI_API_URL;
+  const strapiToken = STRAPI_TOKEN;
 
   const [formData, setFormData] = useState({
     nombreAutor: "",

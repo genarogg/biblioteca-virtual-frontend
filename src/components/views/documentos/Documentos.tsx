@@ -9,13 +9,15 @@ interface Documentos {
   data: any;
 }
 
+import { STRAPI_API_URL, STRAPI_TOKEN } from "@env";
+
 interface InfoState {
   paginacion: number[];
   data: any[];
 }
 const Documentos: React.FC<Documentos> = ({ data }) => {
-  const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-  const strapiToken = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
+  const backendUrl = STRAPI_API_URL;
+  const strapiToken = STRAPI_TOKEN;
 
   const [paginaActual, setPaginaActual] = useState(0);
 

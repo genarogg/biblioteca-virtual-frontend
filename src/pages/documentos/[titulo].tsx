@@ -1,7 +1,9 @@
+import { STRAPI_API_URL, STRAPI_TOKEN } from "@env";
+
 export async function getServerSideProps(context: any) {
   // Construye la URL utilizando el parámetro de la ruta
-  const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-  const strapiToken = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
+  const backendUrl = STRAPI_API_URL;
+  const strapiToken = STRAPI_TOKEN;
 
   const titulo = encodeURIComponent(context.params.titulo);
 

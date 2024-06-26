@@ -21,8 +21,11 @@ interface Descripcion {
   // Agrega cualquier otra propiedad que necesites
 }
 
+import { STRAPI_API_URL, STRAPI_TOKEN } from "@env";
+
 const Documento: React.FC<DocumentoProps> = ({ data }) => {
-  const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+  const backendUrl = STRAPI_API_URL;
+  const strapiToken = STRAPI_TOKEN;
 
   const [loading, setLoading] = useState(true);
   const [descripcion, setDescripcion] = useState<Descripcion>({});

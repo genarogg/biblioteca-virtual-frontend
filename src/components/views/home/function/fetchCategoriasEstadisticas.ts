@@ -1,11 +1,13 @@
 import { notify } from "@nano";
 
+import { STRAPI_API_URL, STRAPI_TOKEN } from "@env";
+
 const fetchCategoriasEstadisticas = async (
   setLoading: any,
   setCategoriaMapa: any
 ) => {
-  const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-  const strapiToken = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
+  const backendUrl = STRAPI_API_URL;
+  const strapiToken = STRAPI_TOKEN;
 
   try {
     const queryWork = "/api/trabajos?fields=id&populate[categoria][fields]=id";

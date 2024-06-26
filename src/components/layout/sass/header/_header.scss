@@ -9,7 +9,6 @@
     box-shadow: 0px 0 30px rgba(1, 41, 112, 0.2);
   }
   .titulo {
-   
     font-size: 10px;
     font-weight: 600;
   }
@@ -98,14 +97,6 @@
   }
 }
 
-@media screen and (max-width: 799px) {
-  .dashboard {
-    .desktop-header {
-      display: none;
-    }
-  }
-}
-
 @media screen and (max-width: 550px) {
   .header-container .movile-header nav ul.elements li {
     &:first-child {
@@ -114,6 +105,23 @@
 
     &:last-child {
       margin-right: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-container {
+    .desktop-header {
+      display: grid;
+      grid-template-columns: 1fr 6fr 1fr;
+      justify-content: center;
+      align-items: center;
+      justify-items: center;
+      padding: 0;
+      
+    }
+    nav {
+      display: none;
     }
   }
 }

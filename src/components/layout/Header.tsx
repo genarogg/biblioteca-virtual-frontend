@@ -1,11 +1,10 @@
-import React from "react";
-import { A } from "@nano";
-
 interface HeaderProps {
   children?: React.ReactNode;
   where?: string;
 }
 
+import { A, BtnHamburgues } from "@nano";
+import { useState } from "react";
 const Header: React.FC<HeaderProps> = ({ children, where }) => {
   interface LiProps {
     link: string;
@@ -20,6 +19,8 @@ const Header: React.FC<HeaderProps> = ({ children, where }) => {
     );
   };
 
+  const [isActive, setIsActive] = useState(false);
+
   const Title = () => {
     return (
       <div className="titulo">
@@ -31,9 +32,21 @@ const Header: React.FC<HeaderProps> = ({ children, where }) => {
     );
   };
 
+  const NavMovile = () => {
+    return (
+      <nav className={isActive ? "active" : ""}>
+        <ul>
+          <Li link="/" text="inicio" />
+          <Li link="/cargar-trabajo" text="cargar documento" />
+        </ul>
+      </nav>
+    );
+  };
+
   return (
     <header className="header-container">
       <div className="desktop-header">
+        <BtnHamburgues isActive={isActive} setIsActive={setIsActive} />
         <Title />
         <nav>
           <ul>
@@ -41,6 +54,7 @@ const Header: React.FC<HeaderProps> = ({ children, where }) => {
             <Li link="/cargar-trabajo" text="cargar documento" />
           </ul>
         </nav>
+        <NavMovile />
       </div>
     </header>
   );

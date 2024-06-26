@@ -1,0 +1,108 @@
+$colorBtn: $azul;
+$colorBtn2: $azul;
+
+button.btnX {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btnX {
+  position: relative;
+  width: 16px;
+  height: 14px;
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btnX span {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  left: 0;
+  background-color: $colorBtn2;
+  border-radius: 4px;
+  transition: all 0.5s;
+}
+
+.btnX.active span {
+  height: 3px;
+}
+
+.btnX span:nth-last-of-type(1) {
+  top: 0;
+}
+
+.btnX span:nth-last-of-type(3) {
+  bottom: 0;
+}
+
+.btnX.active span:nth-last-of-type(1) {
+  transform: translateY(4px) translateX(1px) rotate(-45deg);
+  background-color: $colorBtn2;
+}
+
+.btnX.active span:nth-last-of-type(3) {
+  transform: translateY(-7px) translateX(1px) rotate(45deg);
+  background-color: $colorBtn2;
+}
+
+.btnX.active span:nth-last-of-type(2) {
+  background-color: $colorBtn2;
+  opacity: 0;
+}
+
+.btnMenu.active span:nth-last-of-type(2) {
+  left: 80%;
+}
+
+.btnMenu.active:before {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  content: "";
+  border: 3px solid transparent;
+  border-radius: 50%;
+  top: 62%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  animation: circulo 0.5s 0.3s forwards;
+  margin: -19px 0 0 -18px;
+}
+
+@keyframes circulo {
+  0% {
+    border-color: transparent;
+    transform: rotate(0deg);
+  }
+
+  25% {
+    border-color: transparent $colorBtn transparent transparent;
+  }
+
+  50% {
+    border-color: transparent $colorBtn $colorBtn transparent;
+  }
+
+  75% {
+    border-color: transparent $colorBtn $colorBtn $colorBtn;
+  }
+  100% {
+    border-color: $colorBtn;
+    transform: rotate(-700deg);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .btnX {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .btnX {
+    display: flex;
+  }
+}

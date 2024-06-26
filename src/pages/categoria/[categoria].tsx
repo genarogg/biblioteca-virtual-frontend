@@ -33,8 +33,9 @@ export async function getServerSideProps(context: any) {
     )
     .map((elementoFiltrado: any) => elementoFiltrado.id);
 
+  const dataInvertida = data.reverse();
   // Devuelve los datos como props
-  return { props: { data } };
+  return { props: { dataInvertida } };
 }
 
 interface PageProps {

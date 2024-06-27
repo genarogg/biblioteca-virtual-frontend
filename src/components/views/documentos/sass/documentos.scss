@@ -112,3 +112,35 @@
     }
   }
 }
+
+@media screen and (max-width: 850px) {
+  .container-documentos {
+    padding: 10px;
+    min-height: 400px;
+    max-width: 100%;
+    min-width: 100%;
+
+    .info {
+      padding: 7px 10px;
+      .card-documentos {
+        min-width: 100%;
+        max-width: 100%;
+        width: 85vw;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .container-documentos {
+    padding: 5px;
+
+    .info {
+      .card-documentos {
+        min-width: 100%;
+        max-width: 100%;
+        width: 85vw;
+      }
+    }
+  }
+}

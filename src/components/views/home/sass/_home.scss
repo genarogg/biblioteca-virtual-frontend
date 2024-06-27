@@ -8,7 +8,7 @@
     justify-content: center;
     /*  margin-bottom: 10px; */
     text-transform: uppercase;
-    color: #3d65fd;
+    color: $azul;
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -16,7 +16,7 @@
     span {
       width: 100px;
       height: 4px;
-      background-color: #3d65fd;
+      background-color: $azul;
       border-right: 18px solid #34aadc;
       border-left: 18px solid #34aadc;
       border-radius: 5px;
@@ -81,7 +81,7 @@
     }
 
     a {
-      background: #3d65fd;
+      background: $azul;
       padding: 5px 10px;
       /* border-radius: 5px; */
       font-weight: 600;
@@ -94,7 +94,7 @@
       text-align: center;
 
       &:hover {
-        background: #3d65fd;
+        background: $azul;
         color: #ffffff;
       }
     }

@@ -1,4 +1,8 @@
 .header-container {
+  * {
+    transition: all ease 500ms;
+  }
+
   .desktop-header,
   .movile-header {
     align-items: center;
@@ -11,6 +15,24 @@
   .titulo {
     font-size: 10px;
     font-weight: 600;
+    text-transform: uppercase;
+
+    h2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    .logo {
+      display: none;
+      svg {
+        color: $azul;
+        fill: $azul;
+        width: 100px;
+        height: 60px;
+      }
+    }
   }
 
   nav {
@@ -24,12 +46,17 @@
         margin: 0 10px;
         position: relative;
 
+        height: 65px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         a {
           text-decoration: none;
           font-size: 14px;
           font-weight: bold;
           text-transform: uppercase;
-          color: #3d65fd;
+          color: $azul;
         }
 
         .name {
@@ -71,15 +98,46 @@
     }
   }
 
-  .fade-appear,
-  .fade-enter {
-    opacity: 0;
+  .nav-item .dropdown {
+    position: absolute;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    right: -11px;
+    top: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    z-index: 100;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.2);
+
+    /* padding: 10px; */
+    overflow: hidden;
+    height: 0;
+    top: 46px;
+    li {
+      display: flex; // Asegura que los elementos li usen flexbox
+      align-items: center; // Centra el contenido de li verticalmente
+      white-space: nowrap; // Evita que el texto se pase a la siguiente línea
+      overflow: hidden; // Oculta el texto que desborde el contenedor
+      text-overflow: ellipsis;
+      width: 90%;
+      height: 40px;
+      display: flex;
+      justify-content: flex-start;
+    }
   }
 
-  .fade-appear-active,
-  .fade-enter-active {
-    opacity: 1;
-    transition: opacity 1000ms;
+  .categorias:hover .dropdown {
+    height: 300px;
+    height: auto;
+  }
+
+  .dropdown-sub {
+    display: none;
+  }
+
+  .dropdown li:hover .dropdown-sub {
+    display: flex; /* Muestra las subcategorías al hacer hover en una categoría */
   }
 }
 
@@ -109,6 +167,33 @@
   }
 }
 
+@media screen and (min-width: 768px) {
+  .header-container {
+    nav.nav-bar-desk {
+      display: flex;
+
+      ul {
+        position: relative;
+        /*  li {
+          &:nth-child(1) {
+            position: initial;
+          }
+
+          &:nth-child(2) {
+            position: relative;
+          }
+
+          position: absolute;
+        } */
+      }
+    }
+
+    nav.nav-bar-movile {
+      display: none;
+    }
+  }
+}
+
 @media screen and (max-width: 768px) {
   .header-container {
     .desktop-header {
@@ -118,10 +203,62 @@
       align-items: center;
       justify-items: center;
       padding: 0;
-      
     }
-    nav {
+
+    nav.nav-bar-desk {
       display: none;
+    }
+
+    nav.nav-bar-movile {
+      display: flex;
+
+      height: calc(100vh - 60px);
+      background-color: #fff;
+      z-index: 1000;
+      position: fixed;
+      width: 60vw;
+      max-width: 235px;
+      left: -100%;
+      transition: 600ms ease all;
+      &.active {
+        left: 0%;
+      }
+
+      ul {
+        align-items: start;
+        width: 100%;
+        padding: 20px 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        li {
+          width: 100%;
+          padding-bottom: 10px;
+          height: initial;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        .nav-item.categorias {
+          a[href="#"] {
+            display: none;
+          }
+        }
+        .nav-item .dropdown {
+          box-shadow: none;
+          height: initial;
+          background-color: transparent;
+          position: initial;
+          padding: 0;
+
+          li {
+            height: initial;
+            margin: 0;
+          }
+        }
+      }
     }
   }
 }

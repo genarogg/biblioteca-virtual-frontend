@@ -31,11 +31,11 @@ export async function getServerSideProps(context: any) {
         elemento.attributes.categoria &&
         elemento.attributes.categoria.data !== null
     )
-    .map((elementoFiltrado: any) => elementoFiltrado.id);
+    .map((elementoFiltrado: any) => elementoFiltrado.id)
+    .reverse();
 
-  const dataInvertida = data.reverse();
   // Devuelve los datos como props
-  return { props: { dataInvertida } };
+  return { props: { data } };
 }
 
 interface PageProps {
@@ -45,5 +45,11 @@ interface PageProps {
 import Documentos from "@view/documentos/Documentos";
 
 export default function Page({ data }: PageProps) {
-  return <Documentos data={data} />;
+  console.log(data);
+  return (
+    <>
+      {/* <h1>{data}</h1> */}
+      <Documentos data={data} />
+    </>
+  );
 }

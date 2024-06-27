@@ -76,13 +76,13 @@
       width: 100%;
       background-color: transparent;
       border: 1px solid #999;
-      color: #3d65fd;
+      color: $azul;
 
       transition: transform 500ms;
 
       &:active {
         transform: scale(0.9);
-        background-color: #3d65fd;
+        background-color: $azul;
         color: #fff;
       }
     }

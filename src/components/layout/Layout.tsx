@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({
       ".full-content"
     ) as HTMLImageElement;
 
-    imgBgElement.style.backgroundImage = `url(/img/bg2.webp)`;
+    imgBgElement.style.backgroundImage = `url(/img/bg2_11zon.webp)`;
   }, []);
 
   return (

@@ -47,7 +47,7 @@ const Documentos: React.FC<Documentos> = ({ data }) => {
       const itemsPerPage = 15;
       const startIndex = (pageNumber - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-
+      console.log(data);
       // Filtra data para obtener solo los elementos dentro del rango deseado
       const filteredData = data.slice(startIndex, endIndex);
 

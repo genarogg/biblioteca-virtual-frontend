@@ -9,6 +9,7 @@ export async function getServerSideProps(context: any) {
 
   const url = `${backendUrl}/api/trabajos?filters[titulo][$eq]=${titulo}&populate[PDF][fields]=url&populate[categoria][fields]=nombre`;
 
+  console.log(url);
   // Haz una solicitud a la URL para obtener los datos de la categoría específica
   const response = await fetch(url, {
     method: "GET",

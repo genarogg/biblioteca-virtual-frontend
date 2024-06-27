@@ -25,7 +25,7 @@ const Home: React.FC<HomeProps> = () => {
         <Spinner />
       ) : (
         <>
-         {/*  <div className="titulo-trabajos">
+          <div className="titulo-trabajos">
             <AlgoliaSearch />
             <span></span> 
           </div>
@@ -43,7 +43,7 @@ const Home: React.FC<HomeProps> = () => {
                 />
               )
             )}
-          </div> */}
+          </div>
         </>
       )}
     </Layout>

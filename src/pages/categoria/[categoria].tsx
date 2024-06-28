@@ -32,7 +32,7 @@ export async function getServerSideProps(context: any) {
         elemento.attributes.categoria.data !== null
     )
     .map((elementoFiltrado: any) => elementoFiltrado.id)
-    .reverse();
+    
 
   // Devuelve los datos como props
   return { props: { data } };

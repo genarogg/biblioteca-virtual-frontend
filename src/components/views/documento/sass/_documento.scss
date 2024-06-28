@@ -154,6 +154,14 @@
   }
 }
 
+@media screen and (min-width: 850px) {
+  .container-trabajo {
+    .info {
+      min-height: 480px;
+    }
+  }
+}
+
 @media screen and (max-width: 850px) {
   .container-trabajo {
     grid-template-columns: 1fr;
@@ -177,16 +185,15 @@
       & > div > span:nth-child(4) {
         display: none;
       }
-   
-      .pdf{
+
+      .pdf {
         margin-bottom: 20px;
       }
     }
   }
 }
 
-
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
   .container-trabajo {
     .footer {
       max-height: 150px;

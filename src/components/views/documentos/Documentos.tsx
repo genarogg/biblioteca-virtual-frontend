@@ -47,7 +47,7 @@ const Documentos: React.FC<Documentos> = ({ data }) => {
       const itemsPerPage = 15;
       const startIndex = (pageNumber - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-      console.log(data);
+
       // Filtra data para obtener solo los elementos dentro del rango deseado
       const filteredData = data.slice(startIndex, endIndex);
 
@@ -84,7 +84,12 @@ const Documentos: React.FC<Documentos> = ({ data }) => {
         const totalItems = crearPaginacion(data.length);
         // console.log(totalItems);
         const responseData = await response.json();
-        setInfo({ paginacion: totalItems, data: responseData.data });
+
+   
+
+        const dataInvertida = responseData.data.reverse();
+        console.log(dataInvertida);
+        setInfo({ paginacion: totalItems, data: dataInvertida });
         // console.log(responseData.data);
       };
 

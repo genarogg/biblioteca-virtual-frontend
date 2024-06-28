@@ -63,7 +63,7 @@ const AlgoliaSearch: React.FC<AlgoliaSearchProps> = () => {
     <div className="algolia">
       <InstantSearch
         searchClient={searchClient}
-        indexName="development_api::trabajo.trabajo"
+        indexName="production_api::trabajo.trabajo"
       >
         <SearchBox
           onChange={(event) => {

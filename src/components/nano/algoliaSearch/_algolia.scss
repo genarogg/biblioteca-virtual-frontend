@@ -7,6 +7,7 @@
   width: 100%;
 
   position: relative;
+
   input[type="search"] {
     width: 100%;
     border: none;
@@ -99,13 +100,14 @@
           text-transform: capitalize;
         }
 
-        .link {
-          a {
-            background-color: #41adf2;
-            padding: 5px 10px;
-            border-radius: 5px;
-            color: #fff;
-          }
+        a {
+          background-color: #41adf2;
+          padding: 5px 10px;
+          border-radius: 5px;
+          color: #fff;
+          display: inline-block;
+
+          max-width: 164px;
         }
       }
     }

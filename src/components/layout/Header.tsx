@@ -4,7 +4,7 @@ interface HeaderProps {
   where?: string;
 }
 
-import LogoUnerg from "../svg/logoUnerg";
+import LogoUnerg from "../svg2/LogoUnerg";
 
 import { BtnHamburgues } from "@nano";
 import { useState } from "react";
@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ children, where }) => {
       <div className="titulo">
         <h2>
           <div className="logo">
-            <LogoUnerg />
+           {/*  <LogoUnerg /> */}
           </div>
           UNERG{" "}
           <span

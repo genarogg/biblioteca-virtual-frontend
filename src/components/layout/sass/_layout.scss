@@ -28,7 +28,7 @@ body,
     background-color: #fff;
     width: 100%;
     color: #fff;
-    height: 70px;
+    /* height: 70px; */
     border-top: 1px solid #fff;
     color: $azul;
 
@@ -37,6 +37,9 @@ body,
 
   main {
     display: flex;
+    min-height: 80vh;
+    align-items: center;
+    flex-direction: column;
   }
 }
 

@@ -1,6 +1,10 @@
 .home {
   main {
-    display: block !important;
+    /* display: block !important; */
+  }
+
+  .algolia{
+    margin-top: 30px;
   }
 
   .titulo-trabajos {
@@ -12,7 +16,7 @@
     text-align: center;
     flex-direction: column;
     align-items: center;
-
+    width: 100%;
     span {
       width: 100px;
       height: 4px;
@@ -103,7 +107,7 @@
 
 .home {
   main {
-    display: block !important;
+  /*   display: block !important; */
   }
 }
 

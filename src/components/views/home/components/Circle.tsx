@@ -1,13 +1,13 @@
 interface CircleProps {
   percentage: number;
   color?: string;
-  cantidad: number
+  cantidad: number;
 }
 
 const Circle: React.FC<CircleProps> = ({
   percentage,
   color = "currentColor",
-  cantidad
+  cantidad,
 }) => {
   const radius = 50;
   const circumference = 2 * Math.PI * radius;
@@ -42,7 +42,6 @@ const Circle: React.FC<CircleProps> = ({
         />
       </circle>
       <text x="60" y="60" textAnchor="middle" dy=".3em" fontSize="20">
-        {/* {percentage}% */}
         {cantidad}
       </text>
     </svg>

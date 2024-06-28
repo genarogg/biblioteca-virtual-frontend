@@ -16,7 +16,9 @@ const Home: React.FC<HomeProps> = () => {
   useEffect(() => {
     fetchCategoriasEstadisticas(setLoading, setCategoriaMapa);
 
-    setLoading(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   }, []);
 
   return (
@@ -27,7 +29,7 @@ const Home: React.FC<HomeProps> = () => {
         <>
           <div className="titulo-trabajos">
             <AlgoliaSearch />
-            <span></span> 
+            <span></span>
           </div>
 
           <div className="container-card-stadisticas">

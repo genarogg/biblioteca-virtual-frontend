@@ -32,7 +32,7 @@ const fetchCategoriasEstadisticas = async (
         message: "Hubo un problema al cargar las estadísticas",
         type: "error",
       });
-      setLoading(false);
+
       return;
     }
 

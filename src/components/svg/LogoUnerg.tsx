@@ -2,6 +2,7 @@ interface LogoUnergProps {}
 
 const LogoUnerg: React.FC<LogoUnergProps> = () => {
   return (
+    
     <svg id="outputsvg" width="200"  viewBox="0 0 6000 2670">
       <g id="l2zu6VgpgrBS6RMgEcOKyTs" fill="corurrentColor">
         <g>

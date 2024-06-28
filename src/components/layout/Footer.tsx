@@ -65,13 +65,13 @@ const Footer: React.FC<FooterProps> = () => {
             </nav>
           </div>
 
-          <div className="contacto">
+        {/*   <div className="contacto">
             <h3>Contacto</h3>
             <a href="mailto:secretariaunerg@unerg.edu.ve">
               <Icono css="email" icono={<FaEnvelope />} />
               secretariaunerg
             </a>
-          </div>
+          </div> */}
         </div>
         <div className="down">
           <p>© {year} Todos los derechos reservados</p>

@@ -89,36 +89,8 @@ const Documento: React.FC<DocumentoProps> = ({ data }) => {
                   }}
                 ></p>
               </div>
-              <div className="footer">
-                <div className="pdf ">
-                  <button
-                    className="hover-tamano"
-                    onClick={() => {
-                      printDocument();
-                    }}
-                  >
-                    Descargar Resumen
-                  </button>
-                  <span className="separador "></span>
-                  {descripcion.downloader ? (
-                    <>
-                      <a
-                        className="hover-tamano"
-                        /* @ts-ignore */
-                        href={backendUrl + descripcion.pdf}
-                        download
-                      >
-                        Descargar trabajo
-                      </a>
-                      <span className="separador "></span>
-                    </>
-                  ) : null}
-                </div>
-
-                <p className="categoria">Categoria: {descripcion.categoria}</p>
-              </div>
             </div>
-            <span className="separador "></span>
+
             <div className="autor">
               <div className="titulo">Datos del Autor</div>
               <div className="info-autor">
@@ -130,6 +102,35 @@ const Documento: React.FC<DocumentoProps> = ({ data }) => {
                 {/* Asegúrate de actualizar la generación de la fecha para usar descripcion.createdAt */}
                 <p>Fecha: {formattedDate}</p>
               </div>
+            </div>
+
+            <div className="footer">
+              <div className="pdf ">
+                <button
+                  className="hover-tamano"
+                  onClick={() => {
+                    printDocument();
+                  }}
+                >
+                  Descargar Resumen
+                </button>
+                <span className="separador "></span>
+                {descripcion.downloader ? (
+                  <>
+                    <a
+                      className="hover-tamano"
+                      /* @ts-ignore */
+                      href={backendUrl + descripcion.pdf}
+                      download
+                    >
+                      Descargar trabajo
+                    </a>
+                    <span className="separador "></span>
+                  </>
+                ) : null}
+              </div>
+
+              <p className="categoria">Categoria: {descripcion.categoria}</p>
             </div>
           </div>
         </>

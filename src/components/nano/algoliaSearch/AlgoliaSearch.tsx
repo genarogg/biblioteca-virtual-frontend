@@ -8,9 +8,10 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 
+import { ALGOLIA_ID, ALGOLIA_KEY}from "@env"
+
 const searchClient = algoliasearch(
-  "XR389U5GJP",
-  "33cbef0fbd5de43140870325bff054fe"
+  ALGOLIA_ID, ALGOLIA_KEY
 );
 
 interface AlgoliaSearchProps {}

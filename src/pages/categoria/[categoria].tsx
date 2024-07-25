@@ -10,6 +10,7 @@ export async function getServerSideProps(context: any) {
   // Construye la URL específica para la categoría utilizando el parámetro extraído
   const url = `${backendUrl}/api/trabajos?fields[0]&populate[categoria][filters][url][$eq]=${categoria}&populate[categoria][fields]=id`;
 
+
   // Haz una solicitud a la URL para obtener los datos de la categoría específica
   const response = await fetch(url, {
     method: "GET",
@@ -22,6 +23,7 @@ export async function getServerSideProps(context: any) {
     throw new Error("Network response was not ok");
   }
 
+  console.log(response)
   const responseData = await response.json();
 
   // Filtra los datos para obtener solo los IDs de los trabajos

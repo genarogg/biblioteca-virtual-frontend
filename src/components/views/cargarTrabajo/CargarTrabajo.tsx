@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/* import React, { useState, useEffect } from "react";
 import Layout from "@layout";
 import { Input, InputFile, Select, TextAreaEnriquecido } from "@form";
 
@@ -139,4 +139,15 @@ const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
   );
 };
 
+export default CargarTrabajo;
+ */
+
+interface CargarTrabajoProps {
+    
+}
+ 
+const CargarTrabajo: React.FC<CargarTrabajoProps> = () => {
+    return ( <h1>t</h1> );
+}
+ 
 export default CargarTrabajo;
